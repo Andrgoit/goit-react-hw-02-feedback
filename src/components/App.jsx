@@ -11,20 +11,21 @@ export class App extends React.Component {
     bad: 0,
   };
 
-  onLeaveFeedback = event => {
+  onLeaveFeedback = data => {
+    console.log(data);
     // console.log(event.target.name);
-    const pressBtn = event.target.name;
-    if (pressBtn === 'Good') {
+    // const pressBtn = event.target.name;
+    if (data === 'Good') {
       this.setState(prevState => {
         return { good: prevState.good + 1 };
       });
     }
-    if (pressBtn === 'Neutral') {
+    if (data === 'Neutral') {
       this.setState(prevState => {
         return { neutral: prevState.neutral + 1 };
       });
     }
-    if (pressBtn === 'Bad') {
+    if (data === 'Bad') {
       this.setState(prevState => {
         return { bad: prevState.bad + 1 };
       });
