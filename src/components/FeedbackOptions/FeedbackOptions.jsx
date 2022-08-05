@@ -1,30 +1,27 @@
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import {
+  ButtonContainer,
+  ButtonItem,
+  Button,
+} from 'components/FeedbackOptions/FeedbackOptions.styled';
 
-export const FeedbackOptions = ({good, neutral, bad})=>{
-    return(
-        <ButtonContainer>
-      <Button onClick={good}>Good</Button>
-      <Button onClick={neutral}>Neutral</Button>
-      <Button onClick={bad}>Bad</Button>
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+  return (
+    <ButtonContainer>
+      {options.map(btn => {
+        return (
+          <ButtonItem key={btn}>
+            <Button type="button" name={btn} onClick={onLeaveFeedback}>
+              {btn}
+            </Button>
+          </ButtonItem>
+        );
+      })}
     </ButtonContainer>
-    )
-}
+  );
+};
 
-const ButtonContainer = styled.div`
-display: flex;
-`
-const Button = styled.button`
-background-color: #dfd5d5;
-color: black;
-padding: 5px;
-margin-right: 10px;
-border: none;
-border-radius: 3px;
-cursor: pointer;`;
-
-FeedbackOptions.propTypes={
-    good:PropTypes.func.isRequired,
-    neutral:PropTypes.func.isRequired,
-    bad:PropTypes.func.isRequired,
-}
+FeedbackOptions.propTypes = {
+  onLeaveFeedback: PropTypes.func.isRequired,
+  options: PropTypes.array.isRequired,
+};
