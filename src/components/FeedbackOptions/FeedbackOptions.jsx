@@ -8,17 +8,17 @@ import {
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <ButtonContainer>
-      {options.map(btn => {
+      {options.map(option => {
         return (
-          <ButtonItem key={btn}>
+          <ButtonItem key={option}>
             <Button
               type="button"
-              name={btn}
+              name={option}
               onClick={() => {
-                onLeaveFeedback(btn);
+                onLeaveFeedback(option);
               }}
             >
-              {btn}
+              {option}
             </Button>
           </ButtonItem>
         );

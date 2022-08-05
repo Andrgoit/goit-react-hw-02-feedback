@@ -12,24 +12,9 @@ export class App extends React.Component {
   };
 
   onLeaveFeedback = data => {
-    console.log(data);
-    // console.log(event.target.name);
-    // const pressBtn = event.target.name;
-    if (data === 'Good') {
-      this.setState(prevState => {
-        return { good: prevState.good + 1 };
-      });
-    }
-    if (data === 'Neutral') {
-      this.setState(prevState => {
-        return { neutral: prevState.neutral + 1 };
-      });
-    }
-    if (data === 'Bad') {
-      this.setState(prevState => {
-        return { bad: prevState.bad + 1 };
-      });
-    }
+    this.setState(prevState => {
+      return { [data]: prevState[data] + 1 };
+    });
   };
 
   countTotalFeedback = () => {
@@ -41,10 +26,10 @@ export class App extends React.Component {
   };
 
   render() {
-    const options = ['Good', 'Neutral', 'Bad'];
-
+    const options = ['good', 'neutral', 'bad'];
     const total = this.countTotalFeedback();
     const positivePercentage = this.countPositiveFeedbackPercentage();
+    const { good, neutral, bad } = this.state;
 
     return (
       <>
@@ -59,9 +44,9 @@ export class App extends React.Component {
             <Notification message="There is no feedback" />
           ) : (
             <Statistics
-              good={this.state.good}
-              neutral={this.state.neutral}
-              bad={this.state.bad}
+              good={good}
+              neutral={neutral}
+              bad={bad}
               total={total}
               positivePercentage={positivePercentage}
             />
